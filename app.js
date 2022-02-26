@@ -15,16 +15,17 @@ function app(people){
       searchResults = searchByName(people);
       // console.log(searchResults);
       break;
-    case 'single':
+    case 'no':
+      // Here is where we want to ask single or multiple trait.
       searchResults = searchBySingleTrait(people)
       // console.log(searchResults);
       break;
-    case 'multiple':
-      searchResults = searchByMultipleTraits(people);
-      // console.log(searchResults)
-      break;
-    default: 
-      // console.log(displayPeople())
+    // case 'multiple':
+    //   searchResults = searchByMultipleTraits(people);
+    //   // console.log(searchResults)
+    //   break;
+    // default: 
+    //   // console.log(displayPeople())
           
     app(people); // restart app
       break;
@@ -44,11 +45,12 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
 
   switch(displayOption){
     case "info":
     // TODO: get person's info
+    console.log(displayPerson(person[0]))
     break;
     case "family":
     // TODO: get person's family
@@ -87,7 +89,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-  return mainMenu;
+  return foundPerson;
 }
 
 function searchBySingleTrait(people){
@@ -102,6 +104,7 @@ function searchBySingleTrait(people){
         "4. Occupation /n",
         autoValid
       );
+      let filteredSearch = people;
 
     searchOption.split(' ');
       if(searchOption.includes(1)){
@@ -119,15 +122,8 @@ function searchBySingleTrait(people){
       return displayPeople(filteredSearch)
   }
 
-  
+  }
 
-
-
-}
-//unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
-function searchByEyeColor(people){
-
-}
 
 //TODO: add other trait filter functions here.
 function searchByGender(people){
