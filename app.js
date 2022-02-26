@@ -158,6 +158,31 @@ function searchByEyeColor(people){
 }
 
 
+function searchByHeight(people){
+  let height = promptFor("What is the persons Height?", autoValid);
+  let searchedHeight = people.filter(function(potentialMatch){
+    if(potentialMatch.height === height){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return searchedHeight;
+}
+
+function searchByOccupation(people){
+  let occupation = promptFor("What is the persons Occupation?", autoValid);
+  let searchedOccupation = people.filter(function(potentialMatch){
+    if(potentialMatch.occupation === occupation){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return searchedOccupation;
+}
 
 
 
