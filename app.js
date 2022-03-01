@@ -17,7 +17,7 @@ function app(people){
       break;
     case 'no':
       // Here is where we want to ask single or multiple trait.
-      searchResults = searchBySingleTrait(people)
+    searchResults = searchBySingleTrait(people)
       // console.log(searchResults);
       break;
     // case 'multiple':
@@ -124,7 +124,33 @@ function searchBySingleTrait(people){
 
   }
 
+function searchByMultipleTraits(people){
+  let filteredSearch = people;
 
+  let searchType = promptFor("Do you know the persons Gender? Enter 'Yes or 'No'",yesNo).toLowerCase();
+    if(searchType.toLowerCase() === 'yes'){
+      filteredSearch = searchByGender(filteredSearch);
+      console.log(filteredSearch);
+    }
+
+  let searchType = promptFor("Do you know the persons Eye Color? Enter 'Yes or 'No'",yesNo).toLowerCase();
+    if(searchType.toLowerCase() === 'yes'){
+      filteredSearch = searchByEyeColor(filteredSearch);
+      console.log(filteredSearch);
+    }
+    let searchType = promptFor("Do you know the persons Height? Enter 'Yes or 'No'",yesNo).toLowerCase();
+    if(searchType.toLowerCase() === 'yes'){
+      filteredSearch = searchByHeight(filteredSearch);
+      console.log(filteredSearch);
+    }
+    let searchType = promptFor("Do you know the persons Occupation? Enter 'Yes or 'No'",yesNo).toLowerCase();
+    if(searchType.toLowerCase() === 'yes'){
+      filteredSearch = searchByOccupation(filteredSearch);
+      console.log(filteredSearch);
+    }
+
+
+}
 //TODO: add other trait filter functions here.
 function searchByGender(people){
   let gender = promptFor("What is the persons gender?", autoValid);
