@@ -8,24 +8,24 @@
 
 // app is the function called to start the entire application
 function app(people){
-  let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  let searchType = promptFor("Enter 'yes' if you would like to search by name. If you would like to search by traits, enter 'single' or 'multiple'", autoValid).toLowerCase();
   let searchResults;
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
-      // console.log(searchResults);
+      console.log(searchResults);
       break;
-    case 'no':
+    case 'single':
       // Here is where we want to ask single or multiple trait. Helper Function
-    searchResults = searchBySingleTrait(people)
-      // console.log(searchResults);
+      searchResults = searchBySingleTrait(people)
+      console.log(searchResults);
       break;
-    // case 'multiple':
-    //   searchResults = searchByMultipleTraits(people);
-    //   // console.log(searchResults)
-    //   break;
-    // default: 
-    //   // console.log(displayPeople())
+    case 'multiple':
+      searchResults = searchByMultipleTraits(people);
+      console.log(searchResults)
+      break;
+    default: 
+      console.log(displayPeople())
           
     app(people); // restart app
       break;
@@ -93,36 +93,36 @@ function searchByName(people){
 }
 
 function searchBySingleTrait(people){
-  let searchType = promptFor("Do you know a trait of the person you are looking for?",yesNo).toLowerCase
+  let searchType = promptFor("Do you know a trait of the person you are looking for?",yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
       let searchOption = promptFor(
-        "Which trait would you like to search? (Input Number) /n" +
-        "1. Gender /n" +
-        "2. Eye Color /n" +
-        "3. Height /n" +
-        "4. Occupation /n",
-        autoValid
+        "Which trait would you like to search? (Input Number) \n" +
+        "1. Gender \n" +
+        "2. Eye Color \n" +
+        "3. Height \n" +
+        "4. Occupation \n",
+      autoValid
       );
       let filteredSearch = people;
 
-    searchOption.split(' ');
-      if(searchOption.includes(1)){
+      searchOption.split(' ');
+        if(searchOption.includes(1)){
         filteredSearch = searchByGender(filteredSearch)
-      }
-      if(searchOption.includes(2)){
+        }
+        if(searchOption.includes(2)){
         filteredSearch = searchByEyeColor(filteredSearch)
-      } 
-      if(searchOption.includes(3)){
+        } 
+        if(searchOption.includes(3)){
         filteredSearch = searchByHeight(filteredSearch)
-      } 
-      if(searchOption.includes(4)){
+        } 
+        if(searchOption.includes(4)){
         filteredSearch = searchByOccupation(filteredSearch)
-      } 
-      return displayPeople(filteredSearch)
-  }
+        } 
+        return displayPeople(filteredSearch)
+      }
 
-  }
+}
 
 function searchByMultipleTraits(people){
   let filteredSearch = people;
