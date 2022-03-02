@@ -14,9 +14,9 @@ function app(people){
     app(people); 
       break;
   }
-  
-  mainMenu(searchResults, people);
+    mainMenu(searchResults, people);
 }
+
 function mainMenu(person, people){
   if(!person){
     alert("Could not find that individual.");
@@ -87,7 +87,7 @@ function searchByAge(people){
     case "no":
       return people;
     default:
-      searchByHeight(people);
+      searchByAge(people);
       break;
   }
 }
@@ -155,7 +155,7 @@ function lookUpHeight(people){
 function lookUpAge(people){
   let age = promptFor("What is the person's age?", autoValid)
   let ageFilteredArray = people.filter(function(element){
-    if(element.age === age){
+    if(element.dob === age){
       return true;
     }
   });
@@ -346,11 +346,13 @@ function displayPerson(person, people) {
 function promptFor(question, valid){
   let isValid;
   do{
-    let response = prompt(question).trim();
+    var response = prompt(question).trim();
     isValid = valid(response);
   } while(response === ""  ||  isValid === false)
   return response;
 }
+
+// helper function/callback to pass into promptFor to validate yes/no answers.
 function yesNo(input){
   if(input.toLowerCase() == "yes" || input.toLowerCase() == "no"){
     return true;
@@ -359,9 +361,9 @@ function yesNo(input){
     return false;
   }
 }
+
+
 function autoValid(input){
   return true; 
 }
-function customValidation(input){
-  
-}
+
