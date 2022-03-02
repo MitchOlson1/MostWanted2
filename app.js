@@ -365,4 +365,3 @@ function autoValid(input){
 function customValidation(input){
   
 }
-
