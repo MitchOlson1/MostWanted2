@@ -54,9 +54,13 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+    console.log(searchForSpouse(person[0], people));
+    console.log(searchForParents(person[0], people));
+    console.log(searchForSiblings(person[0], people));
     break;
     case "descendants":
     // TODO: get person's descendants
+    console.log(searchForDescendents(person[0], people));
     break;
     case "restart":
     app(people); // restart
@@ -186,7 +190,7 @@ function searchByEyeColor(people){
 function searchByHeight(people){
   let height = promptFor("What is the persons Height?", autoValid);
   let searchedHeight = people.filter(function(potentialMatch){
-    if(potentialMatch.height === height){
+    if(potentialMatch.height == height){
       return true;
     }
     else{
@@ -242,6 +246,79 @@ function displayPerson(person){
   console.log(personInfo);
   return(personInfo)
 }
+
+function searchForSpouse(person,people){
+  
+  let foundSpouse = people.filter(function(potentialMatch){
+    if(potentialMatch.currentSpouse === person.id){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  let spouse = "Spouse: "
+    for(let i =0; i<foundSpouse.length;i++){
+      spouse += foundSpouse[i].firstName + ', '
+  console.log(spouse)  
+  return foundSpouse;
+  
+  }}
+
+  function searchForParents(person,people){
+  
+    let foundParents = people.filter(function(potentialMatch){
+      if(potentialMatch.parents[0] || potentialMatch.parents[1] === person.id){
+        return true;
+      }
+     
+      else{
+        return false;
+      }
+    })
+    let parents = "Parents: "
+    for(let i =0; i<foundParents.length;i++){
+      parents += foundParents[i].firstName + ', '
+    console.log(parents)
+    return parents;
+    
+  }}
+
+  function searchForSiblings(person,people){
+    let foundSiblings = people.filter(function(potentialMatch){
+      if(potentialMatch.parents[0] || potentialMatch.parents[1] === person.parents[0] || person.parents[1]){
+        return true;
+      }
+     
+      else{
+        return false;
+      }
+    })
+    let siblings = "Siblings: "
+    for(let i =0; i<foundSiblings.length;i++){
+      siblings += foundSiblings[i].firstName + ', '
+    }
+    console.log(siblings)
+    return siblings;
+  }
+
+  function searchForDescendents(person,people){
+    let foundDescendents = people.filter(function(potentialMatch){
+      if(person.id === potentialMatch.parents[0] || potentialMatch.parents[1]){
+        return true;
+      }
+     
+      else{
+        return false;
+      }
+    })
+    let descendents = "Descendents: "
+    for(let i =0; i<foundDescendents.length;i++){
+      siblings += foundDescendents[i].firstName + ', '
+    }
+    console.log(descendents)
+    return descendents;
+  }
 
 //#endregion
 
